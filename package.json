@@ -8,11 +8,21 @@
     "type": "git",
     "url": "git+https://github.com/alfredo-petri/OrderHub-express-api-.git"
   },
-  "keywords": ["api", "rest", "express"],
+  "keywords": [
+    "api",
+    "rest",
+    "express"
+  ],
   "author": "Alfredo Augusto Petri",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/alfredo-petri/OrderHub-express-api-/issues"
   },
-  "homepage": "https://github.com/alfredo-petri/OrderHub-express-api-#readme"
+  "homepage": "https://github.com/alfredo-petri/OrderHub-express-api-#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21"
+  }
 }
