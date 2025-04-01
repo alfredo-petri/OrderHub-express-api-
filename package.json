@@ -1,0 +1,18 @@
+{
+  "name": "orderhub-express-api-",
+  "version": "1.0.0",
+  "description": "A simple API for restaurants to manage orders, from customer requests to real-time status updates.",
+  "main": "server.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alfredo-petri/OrderHub-express-api-.git"
+  },
+  "keywords": ["api", "rest", "express"],
+  "author": "Alfredo Augusto Petri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alfredo-petri/OrderHub-express-api-/issues"
+  },
+  "homepage": "https://github.com/alfredo-petri/OrderHub-express-api-#readme"
+}
