@@ -4,7 +4,8 @@
   "description": "A simple API for restaurants to manage orders, from customer requests to real-time status updates.",
   "main": "server.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx watch src/server.ts",
+    "lint": "eslint src --ext .ts --fix"  
   },
   "repository": {
     "type": "git",
