@@ -24,7 +24,8 @@
   "homepage": "https://github.com/alfredo-petri/OrderHub-express-api-#readme",
   "dependencies": {
     "express": "^4.19.2",
-    "express-async-errors": "^3.1.1"
+    "express-async-errors": "^3.1.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.2.2",
