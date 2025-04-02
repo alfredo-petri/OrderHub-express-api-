@@ -19,7 +19,7 @@ export const idParamSchema = z
 export const idQueryParam = z
     .string()
     .transform((value) => Number(value))
-    .refine((value) => !isNaN, {
+    .refine((value) => !isNaN(value), {
         message: invalidTypeErrorMessage('id', 'number'),
     })
     .optional()
