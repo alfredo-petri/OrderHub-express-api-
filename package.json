@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/alfredo-petri/OrderHub-express-api-#readme",
   "dependencies": {
+    "@prisma/client": "^6.5.0",
     "dotenv": "^16.4.7",
     "express": "^4.19.2",
     "express-async-errors": "^3.1.1",
