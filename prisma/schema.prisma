@@ -42,6 +42,20 @@ model Delivery {
     updatedAt DateTime? @updatedAt @map("updated_at")
 
     user User @relation(fields: [userId], references: [id])
+
+    logs DeliveryLog[]
     
     @@map("deliveries")
+}
+
+model DeliveryLog {
+    id String @id @default(uuid())
+    description String
+    deliveryId String @map("delivery_id")
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime? @updatedAt @map("updated_at")
+
+    delivery Delivery @relation(fields: [deliveryId], references: [id])
+
+    @@map("delivery_logs")
 }
