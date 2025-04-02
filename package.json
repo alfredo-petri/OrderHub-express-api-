@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/alfredo-petri/OrderHub-express-api-#readme",
   "dependencies": {
+    "dotenv": "^16.4.7",
     "express": "^4.19.2",
     "express-async-errors": "^3.1.1",
     "zod": "^3.23.8"
