@@ -12,6 +12,13 @@ enum UserRole {
     sale
 }
 
+enum DeliveryStatus {
+    acepted
+    production
+    shipped
+    delivered
+}
+
 model User {
     id String @id @default(uuid())
     name String
@@ -20,5 +27,21 @@ model User {
     role UserRole @default(customer)
     createdAt DateTime @default(now()) @map("created_at")
     updatedAt DateTime? @updatedAt @map("updated_at")
+
+    deliveries Delivery[]
     @@map("users")
+}
+
+
+model Delivery {
+    id String @id @default(uuid())
+    userId String @map("user_id")
+    description String
+    status DeliveryStatus @default(acepted)
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime? @updatedAt @map("updated_at")
+
+    user User @relation(fields: [userId], references: [id])
+    
+    @@map("deliveries")
 }
