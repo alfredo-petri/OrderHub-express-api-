@@ -18,4 +18,5 @@ export const passwordSchema = () => {
         .regex(/[0-9]/, passwordNumberErrorMessage)
         .regex(/[\W_]/, passwordEspecialCharErrorMessage)
         .regex(/[A-Z]/, passwordUppercaseErrorMessage)
+        .regex(/[a-z]/, passwordUppercaseErrorMessage)
 }
