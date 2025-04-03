@@ -35,3 +35,6 @@ export const passwordEspecialCharErrorMessage =
 
 export const passwordUppercaseErrorMessage =
     'password must contain at least one uppercase letter'
+
+export const passwordLowercaseErrorMessage =
+    'password must contain at least one lowercase letter'
