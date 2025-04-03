@@ -1,7 +1,8 @@
 import { prisma } from '@/prisma'
 import { AppError } from '@/utils/AppError'
-import { userNotFound } from '@/utils/db-queries-errors'
+import { emailInUse, userNotFound } from '@/utils/db-queries-errors'
 import { Delivery, Prisma, UserRole } from '@prisma/client'
+import { hash } from 'bcrypt'
 
 export const userInclude = Prisma.validator<Prisma.UserInclude>()({
     deliveries: true,
@@ -53,5 +54,33 @@ export class User {
         })
         if (!data) throw new AppError(userNotFound)
         this.load(data)
+    }
+
+    static async new(form: UserForm) {
+        const emailExists = await this.isEmailTaken(form.email)
+
+        if (emailExists) throw new AppError(emailInUse, 409)
+
+        const hashedPassword = await hash(form.password, 8)
+
+        const user = await prisma.user.create({
+            data: {
+                name: form.name,
+                email: form.email,
+                password: hashedPassword,
+            },
+            omit: { password: true },
+        })
+
+        return user
+    }
+
+    static async isEmailTaken(email: string): Promise<boolean> {
+        const emailExists = await prisma.user.findFirst({
+            where: { email },
+            select: { email: true },
+        })
+
+        return !!emailExists
     }
 }
