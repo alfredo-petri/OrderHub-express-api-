@@ -1,10 +1,6 @@
 import { prisma } from '@/prisma'
 import { AppError } from '@/utils/AppError'
-import {
-    emailInUse,
-    userNotFound,
-    userWithEmailNotFound,
-} from '@/utils/db-queries-errors'
+import { emailInUse, userNotFound } from '@/utils/db-queries-errors'
 import { Delivery, Prisma, UserRole } from '@prisma/client'
 import { hash } from 'bcrypt'
 
@@ -96,7 +92,7 @@ export class User {
             include: userInclude,
         })
 
-        if (!user) throw new AppError(userWithEmailNotFound, 404)
+        if (!user) return null
 
         return new User(user.id, user)
     }
