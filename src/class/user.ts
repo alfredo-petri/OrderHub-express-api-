@@ -1,6 +1,10 @@
 import { prisma } from '@/prisma'
 import { AppError } from '@/utils/AppError'
-import { emailInUse, userNotFound } from '@/utils/db-queries-errors'
+import {
+    emailInUse,
+    userNotFound,
+    userWithEmailNotFound,
+} from '@/utils/db-queries-errors'
 import { Delivery, Prisma, UserRole } from '@prisma/client'
 import { hash } from 'bcrypt'
 
@@ -82,5 +86,18 @@ export class User {
         })
 
         return !!emailExists
+    }
+
+    static async getUserByEmail(email: string): Promise<User | null> {
+        const user = await prisma.user.findFirst({
+            where: {
+                email,
+            },
+            include: userInclude,
+        })
+
+        if (!user) throw new AppError(userWithEmailNotFound, 404)
+
+        return new User(user.id, user)
     }
 }
