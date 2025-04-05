@@ -16,6 +16,7 @@ export type UserForm = {
     name: string
     email: string
     password: string
+    role?: 'sale' | 'customer'
 }
 
 export class User {
@@ -68,6 +69,7 @@ export class User {
                 name: form.name,
                 email: form.email,
                 password: hashedPassword,
+                role: form.role,
             },
             omit: { password: true },
         })
