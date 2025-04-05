@@ -1,3 +1,5 @@
-export const userNotFound = 'No user found with the provided identifier'
+export const userNotFound = 'no user found with the provided identifier'
 export const emailInUse = 'email is already in use'
 export const credentialsError = 'email or password invalid'
+export const invalidToken = 'invalid token, unauthorized'
+export const requiredToken = 'token is required'
