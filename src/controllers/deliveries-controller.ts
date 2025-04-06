@@ -3,6 +3,16 @@ import { createDeliverySchema } from '@/schemas/deliveries/create-delivery-schem
 import { Request, Response, NextFunction } from 'express'
 
 class DeliveriesController {
+    async get(_request: Request, response: Response, next: NextFunction) {
+        try {
+            const deliveries = await Delivery.list()
+
+            return response.json({ deliveries })
+        } catch (error) {
+            next(error)
+        }
+    }
+
     async create(request: Request, response: Response, next: NextFunction) {
         try {
             const { user_id: userId, description } = createDeliverySchema.parse(
