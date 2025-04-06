@@ -10,6 +10,11 @@ export const deliveryInclude = Prisma.validator<Prisma.DeliveryInclude>()({
 
 export type DeliveryPrisma = Prisma.DeliveryGetPayload<object>
 
+export type DeliveryForm = {
+    userId: string
+    description: string
+}
+
 export class Delivery {
     id: string
     userId: string
@@ -44,5 +49,15 @@ export class Delivery {
         if (!data) throw new AppError(notFound('delivery'), 404)
 
         this.load(data)
+    }
+
+    static async new(form: DeliveryForm) {
+        const delivery = await prisma.delivery.create({
+            data: {
+                userId: form.userId,
+                description: form.description,
+            },
+        })
+        return delivery
     }
 }
