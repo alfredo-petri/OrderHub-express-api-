@@ -2,13 +2,16 @@ import { prisma } from '@/prisma'
 import { AppError } from '@/utils/AppError'
 import { notFound } from '@/utils/db-queries-errors'
 import { DeliveryStatus, Prisma } from '@prisma/client'
+import { User } from './user'
 
 export const deliveryInclude = Prisma.validator<Prisma.DeliveryInclude>()({
-    logs: true,
-    user: true,
+    // logs: true,
+    user: { select: { name: true, email: true } },
 })
 
-export type DeliveryPrisma = Prisma.DeliveryGetPayload<object>
+export type DeliveryPrisma = Prisma.DeliveryGetPayload<{
+    include: typeof deliveryInclude
+}>
 
 export type DeliveryForm = {
     userId: string
@@ -22,6 +25,7 @@ export class Delivery {
     status: DeliveryStatus
     createdAt: Date
     updatedAt: Date | null
+    user: Partial<User>
 
     constructor(data: DeliveryPrisma | string) {
         if (typeof data === 'string') {
@@ -38,6 +42,7 @@ export class Delivery {
         this.status = data.status
         this.createdAt = data.createdAt
         this.updatedAt = data.updatedAt
+        this.user = data.user
     }
 
     async init() {
