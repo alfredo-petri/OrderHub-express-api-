@@ -60,4 +60,12 @@ export class Delivery {
         })
         return delivery
     }
+
+    static async list() {
+        const data = await prisma.delivery.findMany({
+            include: deliveryInclude,
+        })
+        const deliveries = data.map((item) => new Delivery(item))
+        return deliveries
+    }
 }
