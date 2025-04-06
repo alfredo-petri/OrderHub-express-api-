@@ -8,14 +8,14 @@ const deliveriesRoutes = Router()
 const deliveriesController = new DeliveriesController()
 const deliveriesStatusController = new DeliveryStatusController()
 
-deliveriesRoutes.use(
-    ensureAuthenticated,
-    verifyUserAuthorization(['sale', 'customer']),
-)
+deliveriesRoutes.use(ensureAuthenticated)
 
+// all user types
 deliveriesRoutes.post('/', deliveriesController.create)
-deliveriesRoutes.get('/', deliveriesController.get)
 
 deliveriesRoutes.use(verifyUserAuthorization(['sale']))
+
+// only sale user
+deliveriesRoutes.get('/', deliveriesController.get)
 deliveriesRoutes.patch('/status', deliveriesStatusController.updateStatus)
 export { deliveriesRoutes }
