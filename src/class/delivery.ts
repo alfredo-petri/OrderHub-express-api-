@@ -1,11 +1,18 @@
 import { prisma } from '@/prisma'
 import { AppError } from '@/utils/AppError'
 import { notFound } from '@/utils/db-queries-errors'
-import { DeliveryStatus, Prisma } from '@prisma/client'
+import { DeliveryLog, DeliveryStatus, Prisma } from '@prisma/client'
 import { User } from './user'
 
 export const deliveryInclude = Prisma.validator<Prisma.DeliveryInclude>()({
-    // logs: true,
+    logs: {
+        select: {
+            id: true,
+            description: true,
+            createdAt: true,
+            updatedAt: true,
+        },
+    },
     user: { select: { name: true, email: true } },
 })
 
@@ -16,6 +23,7 @@ export type DeliveryPrisma = Prisma.DeliveryGetPayload<{
 export type DeliveryForm = {
     userId: string
     description: string
+    status?: DeliveryStatus
 }
 
 export class Delivery {
@@ -26,6 +34,7 @@ export class Delivery {
     createdAt: Date
     updatedAt: Date | null
     user: Partial<User>
+    logs: Partial<DeliveryLog>[]
 
     constructor(data: DeliveryPrisma | string) {
         if (typeof data === 'string') {
@@ -43,6 +52,7 @@ export class Delivery {
         this.createdAt = data.createdAt
         this.updatedAt = data.updatedAt
         this.user = data.user
+        this.logs = data.logs
     }
 
     async init() {
@@ -54,6 +64,24 @@ export class Delivery {
         if (!data) throw new AppError(notFound('delivery'), 404)
 
         this.load(data)
+    }
+
+    async update(data: Partial<DeliveryForm>) {
+        try {
+            const updatedDelivery = await prisma.delivery.update({
+                where: { id: this.id },
+                data: {
+                    description: data.description,
+                    userId: data.userId,
+                    status: data.status,
+                },
+                include: deliveryInclude,
+            })
+
+            return updatedDelivery
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     static async new(form: DeliveryForm) {
