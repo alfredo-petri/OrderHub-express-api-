@@ -51,4 +51,18 @@ export class Deliverylogs {
         if (!data) throw new AppError(notFound('delivery-logs'), 404)
         this.load(data)
     }
+
+    static async new(data: DeliveryLogsForm) {
+        try {
+            const deliveryLogs = await prisma.deliveryLog.create({
+                data: {
+                    description: data.description,
+                    deliveryId: data.deliveryId,
+                },
+            })
+            return deliveryLogs
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
