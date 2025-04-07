@@ -8,6 +8,7 @@ const deliveryLogsController = new DeliveryLogsController()
 
 // authentication verify to all users
 deliveryLogsRoutes.use(ensureAuthenticated)
+deliveryLogsRoutes.get('/:delivery_id', deliveryLogsController.show)
 
 // only sale user can do this
 deliveryLogsRoutes.use(verifyUserAuthorization(['sale']))
