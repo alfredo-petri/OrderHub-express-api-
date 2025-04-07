@@ -1,4 +1,5 @@
 import { Delivery } from '@/class/delivery'
+import { Deliverylogs } from '@/class/delivery-logs'
 import { updateDeliveryStatusSchema } from '@/schemas/deliveries/update-delivery-schema'
 import { Request, Response, NextFunction } from 'express'
 
@@ -16,9 +17,15 @@ class DeliveryStatusController {
             const delivery = new Delivery(id)
 
             await delivery.init()
-            const updatedDelivery = await delivery.update({ status })
 
-            return response.status(200).json(updatedDelivery)
+            await delivery.update({ status })
+
+            await Deliverylogs.new({
+                deliveryId: id,
+                description: `status update to: ${status}`,
+            })
+
+            return response.status(200).json()
         } catch (error) {
             next(error)
         }
