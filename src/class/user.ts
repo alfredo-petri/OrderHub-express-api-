@@ -5,7 +5,9 @@ import { Delivery, Prisma, UserRole } from '@prisma/client'
 import { hash } from 'bcrypt'
 
 export const userInclude = Prisma.validator<Prisma.UserInclude>()({
-    deliveries: true,
+    deliveries: {
+        select: { description: true, status: true, updatedAt: true },
+    },
 })
 
 export type UserPrisma = Prisma.UserGetPayload<{

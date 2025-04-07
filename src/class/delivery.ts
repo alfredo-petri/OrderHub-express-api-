@@ -7,9 +7,7 @@ import { User } from './user'
 export const deliveryInclude = Prisma.validator<Prisma.DeliveryInclude>()({
     logs: {
         select: {
-            id: true,
             description: true,
-            createdAt: true,
             updatedAt: true,
         },
     },
