@@ -12,12 +12,3 @@ export const idSchema = (field: string) => {
         })
         .uuid(invalidTypeErrorMessage(field, 'uuid'))
 }
-export const idQueryParam = (field: string) => {
-    return z
-        .string({
-            invalid_type_error: invalidTypeErrorMessage(field, 'string'),
-            required_error: requiredErrorMessage(field),
-        })
-        .uuid(invalidTypeErrorMessage(field, 'uuid'))
-        .optional()
-}
