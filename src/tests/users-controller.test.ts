@@ -33,4 +33,17 @@ describe('UsersController', () => {
         expect(response.status).toBe(409)
         expect(response.body.message).toBe('email is already in use')
     })
+
+    it('should throw a validation error if email is invalid', async () => {
+        const response = await request(app).post('/users').send({
+            name: 'new test user',
+            email: 'newtestuser.email.com',
+            password: '*Senhateste123',
+        })
+
+        console.log({ response: response.body.issues })
+
+        expect(response.status).toBe(400)
+        expect(response.body.message).toBe('validation error:')
+    })
 })
