@@ -9,7 +9,7 @@ describe('UsersController', () => {
         await prisma.user.delete({ where: { id: userId } })
     })
 
-    it('shoukd create a new user succesfully', async () => {
+    it('should create a new user succesfully', async () => {
         const response = await request(app).post('/users').send({
             name: 'test user',
             email: 'testuser@email.com',
