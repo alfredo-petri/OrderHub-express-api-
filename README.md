@@ -1,12 +1,10 @@
 # OrderHub-express-api-
-A simple and secure API for restaurants to manage orders, from customer requests to real-time status updates.
+A simple and secure API for managing orders, from customer requests to real-time status updates.
 
+This project is a RESTful API for an order fulfillment system, built with Node.js, Express, PostgreSQL, and Prisma. The system supports two main user roles: sellers and buyers (users), each with distinct capabilities for managing and tracking orders.
 
-Restaurant API
-
-This project is a RESTful API for a restaurant ordering system, built with Node.js, Express, PostgreSQL, and Prisma. The system enables two primary user roles: sellers (restaurants) and buyers (users), each with distinct capabilities for managing and tracking orders.
 Features
-Seller (Restaurant) Capabilities:
+Seller Capabilities:
 
     Receive Orders: Sellers can receive incoming orders from users.
 
@@ -20,7 +18,7 @@ Seller (Restaurant) Capabilities:
 
 Buyer (User) Capabilities:
 
-    Place Orders: Buyers can place orders for food items from restaurants.
+    Place Orders: Buyers can place orders for items.
 
     Track Orders: Buyers can monitor the status of their orders in real-time.
 
