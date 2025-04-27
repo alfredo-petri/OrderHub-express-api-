@@ -35,3 +35,10 @@ Technologies
     Security: JSON Web Tokens (JWT) for user authentication and authorization
 
     Testing: Vitest for unit testing and Supertest for API testing
+
+
+
+
+Notes: <br>
+Adjust the DATABASE_URL if your database credentials are different. <br>
+PORT is optional if you don't set, default value will be 3333
