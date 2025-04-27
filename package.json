@@ -1,7 +1,7 @@
 {
   "name": "orderhub-express-api-",
   "version": "1.0.0",
-  "description": "A simple API for restaurants to manage orders, from customer requests to real-time status updates.",
+  "description": "OrderHub is a scalable and secure RESTful API for managing customer orders. The system allows sellers to manage orders and update their status, while buyers can place and monitor their orders in real-time. Designed following Object-Oriented Programming principles. ",
   "main": "server.js",
   "engines": {
     "node": ">=18"
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alfredo-petri/OrderHub-express-api-.git"
+    "url": "https://github.com/alfredo-petri/oop-rest-api-OrderHub"
   },
   "keywords": [
     "api",
@@ -25,9 +25,9 @@
   "author": "Alfredo Augusto Petri",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alfredo-petri/OrderHub-express-api-/issues"
+    "url": "https://github.com/alfredo-petri/oop-rest-api-OrderHub/issues"
   },
-  "homepage": "https://github.com/alfredo-petri/OrderHub-express-api-#readme",
+  "homepage": "https://github.com/alfredo-petri/oop-rest-api-OrderHub?tab=readme-ov-file",
   "dependencies": {
     "@prisma/client": "^6.5.0",
     "bcrypt": "^5.1.1",
