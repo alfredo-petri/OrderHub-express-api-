@@ -43,16 +43,20 @@ Before running this project, make sure you have installed:
 
 ## How to Run the Project
 
-### 1. Start the Database
+### 1. Install Project Dependencies
 
+```bash
+npm install
+```
+
+### 2. Start the Database
 
 ```bash
 docker compose up -d
 ```
-
 This will spin up the PostgreSQL container required by the app.
 
-### 2. Create a .env File
+### 3. Create a .env File
 
 At the root of the project, create a .env file with the following content:
 
@@ -66,11 +70,6 @@ Notes:
 - Adjust the DATABASE_URL if your database credentials are different. 
 - PORT is optional if you don't set it, default value will be 3333
 
-### 3. Install Project Dependencies
-
-```bash
-npm install
-```
 
 ### 4. Apply Database Migrations
 
@@ -81,7 +80,6 @@ npx prisma migrate dev
 This will apply migrations and generate the Prisma Client.
 
 ### 5. Running the Project
-
 
 ```bash
 npm run dev
